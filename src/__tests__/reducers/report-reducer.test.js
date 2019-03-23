@@ -1,6 +1,6 @@
 import reportReducer from '../../reducers/report-reducer';
 import getSurfReport from '../../api';
-import exampleData from '../../exampleData';
+import {exampleAPIResponse} from '../../exampleData';
 
 describe('reportReducer', () => {
   const initialState = {};
@@ -12,7 +12,7 @@ describe('reportReducer', () => {
 
   describe('SET_REPORT', () => {
     test('should parse string from api call and return new report to json object', () => {
-      const reportJSON = reportReducer(initialState, {type: 'SET_REPORT', report: exampleData})
+      const reportJSON = reportReducer(initialState, {type: 'SET_REPORT', report: exampleAPIResponse})
       const firstKey = Object.keys(reportJSON)[0];
       expect(reportJSON[firstKey]).toEqual(expect.objectContaining({
         yr: expect.any(String),
@@ -35,4 +35,6 @@ describe('reportReducer', () => {
       }));
     });
   });
+
+
 });
