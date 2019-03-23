@@ -1,8 +1,8 @@
-import surfListReducer from './surf-list-reducer';
+import reportReducer from './report-reducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  surfList: surfListReducer
+  report: reportReducer
 });
 
 export default rootReducer;

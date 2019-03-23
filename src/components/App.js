@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/App.css';
+import getSurfReport from '../api';
+import { connect } from 'react-redux';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount(){
+    const {dispatch} = this.props;
+
+    const surfReportPromise = getSurfReport();
+    surfReportPromise.then((response)=>{
+      dispatch({type: 'SET_REPORT', report: response});
+    });
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,4 +43,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    report: state.report
+  }
+}
+
+export default connect(mapStateToProps)(App);
