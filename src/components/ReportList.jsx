@@ -1,19 +1,39 @@
 import React from 'react';
 import ReportListItem from './ReportListItem';
 import {v4} from 'uuid';
+import {connect} from 'react-redux';
 
-function ReportList(props){
-  return(
-    <div>
-      {Object.keys(props.report).map((dayIndex)=>{
-        let day = props.report[dayIndex];
+class ReportList extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {};
+  }
+
+  componentDidMount(){
+    const {dispatch} = this.props;
+    const firstDay = Object.keys(this.props.report)[0];
+    dispatch({type: 'SET_DAY_INDEX', dayIndex: firstDay})
+  }
+
+  render(){
+    return(
+      <div>
+      {Object.keys(this.props.report).map((dayIndex)=>{
+        let day = this.props.report[dayIndex];
         return <ReportListItem
-                  day={day}
-                  dayIndex={dayIndex}
-                  key={v4()}/>
+        day={day}
+        dayIndex={dayIndex}
+        key={v4()}/>
       })}
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default ReportList;
+const mapStateToProps = state => {
+  return {
+    dayIndex: state.dayIndex
+  };
+};
+
+export default connect(mapStateToProps)(ReportList);
