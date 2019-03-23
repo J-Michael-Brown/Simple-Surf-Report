@@ -1,3 +1,55 @@
+function getScore(day){
+  const { WWD, SwP, SwH } = day;
+  const waveSize = SwP*SwH;
+  let score = 0;
+  switch (WWD) {
+    case 'E':
+      score+=5;
+      break;
+    case 'NE':
+      score += 4;
+      break;
+    case 'SE':
+      score += 3;
+      break;
+    case 'S':
+      score += 2;
+      break;
+    default:
+      score += 1;
+  }
+  switch (true) {
+    case (16 <= SwP):
+      score += 5
+      break;
+    case (12 <= SwP):
+      score += 4;
+      break;
+    case (10 <= SwP):
+      score += 3;
+      break;
+    default:
+      score += 1;
+  }
+  switch (true) {
+    case (30<=waveSize):
+      score+=5;
+      break;
+    case (25<=waveSize):
+      score+=4;
+      break;
+    case (20<=waveSize):
+      score+=3;
+      break;
+    case (10<=waveSize):
+      score+=2;
+      break;
+    default:
+      score+=1;
+  }
+  return score;
+}
+
 function reportReducer(state = {}, action){
   const {report, type} = action;
   let newReport;
@@ -24,6 +76,7 @@ function reportReducer(state = {}, action){
         day['APD'] = dayReport[13];
         day['MWD'] = dayReport[14];
         day['date'] = new Date(date);
+        day['score'] = getScore(day);
         newReport[date] = day;
       }
       return newReport;
