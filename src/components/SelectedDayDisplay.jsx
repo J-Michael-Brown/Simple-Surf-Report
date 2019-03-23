@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function SelectedDayDisplay (props){
+  const day = props.report[props.dayIndex];
   return(
     <div style={{color: 'green'}}>
-      {props.report[props.dayIndex].score}
+      {day.score}
     </div>
   )
 }

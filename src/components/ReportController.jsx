@@ -21,7 +21,7 @@ class ReportController extends React.Component {
 
   render(){
     if(Object.keys(this.props.report).length){
-      return <div><ReportList report={this.props.report}/></div>
+      return <div style={{textAlign: 'center'}}><ReportList report={this.props.report}/></div>
     } else {
       return <div>You may need to enable CORS and reload the page</div>
     }
