@@ -55,7 +55,6 @@ function reportReducer(state = {}, action){
   let newReport;
   switch (type) {
     case 'SET_REPORT':
-      console.log(report);
       newReport = {};
       for (var i = 140; i < report.length; i+=70) {
         let dayReport = report.slice(i, i+70).split(/\s+/).filter(function(str){return str!==''});
