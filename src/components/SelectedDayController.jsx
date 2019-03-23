@@ -1,13 +1,14 @@
 import React from 'react';
 import SelectedDayDisplay from './SelectedDayDisplay';
+import {connect} from 'react-redux';
 
-function SelecedDayController(props){
+function SelectedDayController(props){
 
 
-  if(this.props.dayIndex){
+  if(props.dayIndex.constructor.name==='String'){
     return (
       <div>
-        <SelectedDayDisplay dayIndex={this.props.dayIndex}/>
+        <SelectedDayDisplay dayIndex={props.dayIndex}/>
       </div>
     )
   } else {
@@ -26,4 +27,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SelecedDayController);
+export default connect(mapStateToProps)(SelectedDayController);
